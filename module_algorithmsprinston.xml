@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_algorithmsprinston" default="compile.module.algorithmsprinston">
+  <dirname property="module.algorithmsprinston.basedir" file="${ant.file.module_algorithmsprinston}"/>
+  
+  <property name="module.jdk.home.algorithmsprinston" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.algorithmsprinston" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.algorithmsprinston" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.algorithmsprinston" value="-encoding UTF-8 -source 9 -target 9 ${compiler.args}"/>
+  
+  <property name="algorithmsprinston.output.dir" value="${module.algorithmsprinston.basedir}/out/production/AlgorithmsPrinston"/>
+  <property name="algorithmsprinston.testoutput.dir" value="${module.algorithmsprinston.basedir}/out/test/AlgorithmsPrinston"/>
+  
+  <path id="algorithmsprinston.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="algorithmsprinston.module.production.classpath">
+    <path refid="${module.jdk.classpath.algorithmsprinston}"/>
+  </path>
+  
+  <path id="algorithmsprinston.runtime.production.module.classpath">
+    <pathelement location="${algorithmsprinston.output.dir}"/>
+  </path>
+  
+  <path id="algorithmsprinston.module.classpath">
+    <path refid="${module.jdk.classpath.algorithmsprinston}"/>
+    <pathelement location="${algorithmsprinston.output.dir}"/>
+  </path>
+  
+  <path id="algorithmsprinston.runtime.module.classpath">
+    <pathelement location="${algorithmsprinston.testoutput.dir}"/>
+    <pathelement location="${algorithmsprinston.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.algorithmsprinston">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.algorithmsprinston">
+    <patternset refid="excluded.from.module.algorithmsprinston"/>
+  </patternset>
+  
+  
+  <target name="compile.module.algorithmsprinston" depends="compile.module.algorithmsprinston.production,compile.module.algorithmsprinston.tests" description="Compile module AlgorithmsPrinston"/>
+  
+  <target name="compile.module.algorithmsprinston.production" depends="register.custom.compilers" description="Compile module AlgorithmsPrinston; production classes"/>
+  
+  <target name="compile.module.algorithmsprinston.tests" depends="register.custom.compilers,compile.module.algorithmsprinston.production" description="compile module AlgorithmsPrinston; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.algorithmsprinston" description="cleanup module">
+    <delete dir="${algorithmsprinston.output.dir}"/>
+    <delete dir="${algorithmsprinston.testoutput.dir}"/>
+  </target>
+</project>
